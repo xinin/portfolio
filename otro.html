@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="cloud-scroll"></div>
+<style>
+    #cloud-scroll {
+        width: 100%;
+        height: 200px;
+        background-image: url(img/header.png);
+        /*background: url(https://www.w3schools.com/angular/pic_angular.jpg);*/
+        -webkit-animation: backgroundScroll 20s linear infinite;
+        animation: backgroundScroll 20s linear infinite;
+    }
+
+    @-webkit-keyframes backgroundScroll {
+        from {background-position: 0 0;}
+        to {background-position: -400px 0;}
+    }
+
+    @keyframes backgroundScroll {
+        from {background-position: 0 0;}
+        to {background-position: -400px 0;}
+    }
+</style>
+
+</body>
+</html>

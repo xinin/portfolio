@@ -1,6 +1,6 @@
 /*!
  * Diego Prieto Portfolio v1.0.3 (http://startbootstrap.com/template-overviews/creative)
- * Fri Jun 30 2017 08:54:38 GMT+0200 (CEST) Diego Prieto
+ * Fri Jun 30 2017 09:54:35 GMT+0200 (CEST) Diego Prieto
  */
 html,
 body {
@@ -155,6 +155,22 @@ aside {
 #mainTitle {
   margin-bottom: 30px;
 }
+@-webkit-keyframes backgroundScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -400px 0;
+  }
+}
+@keyframes backgroundScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -400px 0;
+  }
+}
 header {
   position: relative;
   width: 100%;
@@ -165,12 +181,21 @@ header {
   -o-background-size: cover;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
 }
 header .header-content {
   position: relative;
   text-align: center;
   padding: 100px 15px 100px;
   width: 100%;
+}
+header .header-content .image-scroll {
+  min-height: 470px;
+  background-image: url(/img/header.png);
+  background-attachment: scroll;
+  background-repeat: repeat-x;
+  -webkit-animation: backgroundScroll 20s linear infinite;
+  animation: backgroundScroll 20s linear infinite;
 }
 header .header-content .phrase {
   display: flex;
@@ -202,6 +227,10 @@ header .header-content p {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     padding: 0 50px;
+  }
+  header .header-content .row-margin-0 {
+    margin-left: -100px;
+    margin-right: -100px;
   }
   header .header-content .header-content-inner {
     max-width: 1000px;

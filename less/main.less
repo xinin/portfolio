@@ -172,6 +172,16 @@ aside {
   margin-bottom: 30px;
 }
 
+@-webkit-keyframes backgroundScroll {
+  from {background-position: 0 0;}
+  to {background-position: -400px 0;}
+}
+
+@keyframes backgroundScroll {
+  from {background-position: 0 0;}
+  to {background-position: -400px 0;}
+}
+
 header {
   position: relative;
   width: 100%;
@@ -179,7 +189,19 @@ header {
   .background-cover;
   text-align: center;
   color: fade(white, 70%);
+  overflow: hidden;
+
   .header-content {
+
+    .image-scroll{
+      min-height: 470px;
+      background-image: url(/img/header.png);
+      background-attachment: scroll;
+      background-repeat: repeat-x;
+      -webkit-animation: backgroundScroll 20s linear infinite;
+      animation: backgroundScroll 20s linear infinite;
+    }
+
     .phrase{
       display: flex;
       align-items: center;
@@ -206,12 +228,15 @@ header {
       margin-bottom: 50px;
     }
 
-
-
   }
   @media (min-width: 768px) {
+
     min-height: 100%;
     .header-content {
+      .row-margin-0{
+        margin-left: -100px;
+        margin-right: -100px;
+      }
       position: absolute;
       top: 50%;
       -webkit-transform: translateY(-50%);
@@ -408,6 +433,3 @@ a {
   margin-top: 30px;
 }
 
-.label{
-
-}
