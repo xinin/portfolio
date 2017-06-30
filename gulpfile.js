@@ -9,9 +9,8 @@ var pkg = require('./package.json');
 
 // Set the banner content
 var banner = ['/*!\n',
-    ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-    ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
+    ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+    ' * ',(new Date()), ' <%= pkg.author %>\n',
     ' */\n',
     ''
 ].join('');
@@ -29,7 +28,7 @@ gulp.task('less', function() {
 
 // Minify compiled CSS
 gulp.task('minify-css', ['less'], function() {
-    return gulp.src('css/main.css')
+    return gulp.src('css/*.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('css'))
@@ -40,7 +39,7 @@ gulp.task('minify-css', ['less'], function() {
 
 // Minify JS
 gulp.task('minify-js', function() {
-    return gulp.src('js/functions.js')
+    return gulp.src('js/*.js')
         .pipe(uglify())
         .pipe(header(banner, { pkg: pkg }))
         .pipe(rename({ suffix: '.min' }))
@@ -53,16 +52,10 @@ gulp.task('minify-js', function() {
 // Copy vendor libraries from /node_modules into /vendor
 gulp.task('copy', function() {
     gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-        .pipe(gulp.dest('vendor/bootstrap'))
+        .pipe(gulp.dest('vendor/bootstrap'));
 
     gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-        .pipe(gulp.dest('vendor/jquery'))
-
-    gulp.src(['node_modules/magnific-popup/dist/*'])
-        .pipe(gulp.dest('vendor/magnific-popup'))
-
-    gulp.src(['node_modules/scrollreveal/dist/*.js'])
-        .pipe(gulp.dest('vendor/scrollreveal'))
+        .pipe(gulp.dest('vendor/jquery'));
 
     gulp.src([
             'node_modules/font-awesome/**',
@@ -83,12 +76,12 @@ gulp.task('browserSync', function() {
     browserSync.init({
         server: {
             baseDir: ''
-        },
+        }
     })
-})
+});
 
 // Dev task with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() {
+gulp.task('dev', ['less', 'minify-css', 'minify-js', 'browserSync'], function() {
     gulp.watch('less/*.less', ['less']);
     gulp.watch('css/*.css', ['minify-css']);
     gulp.watch('js/*.js', ['minify-js']);
@@ -96,3 +89,7 @@ gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() 
     gulp.watch('*.html', browserSync.reload);
     gulp.watch('js/**/*.js', browserSync.reload);
 });
+
+gulp.task('serve', ['default', 'dev']), function () {
+
+};
