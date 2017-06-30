@@ -77,6 +77,9 @@ gulp.task('copy', function() {
     gulp.src(['img/**/*', 'files/**/*', 'index.html']).pipe(gulp.dest('dist/img'));
     gulp.src(['files/**/*']).pipe(gulp.dest('dist/files'));
     gulp.src(['index.html']).pipe(gulp.dest('dist'));
+    gulp.src(['robots.txt']).pipe(gulp.dest('dist'));
+    gulp.src(['sitemap.xml']).pipe(gulp.dest('dist'));
+
 });
 
 // Run everything
