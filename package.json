@@ -13,5 +13,8 @@
     "gulp-remove-files": "0.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.4"
+  },
+  "scripts": {
+    "start": "gulp serve"
   }
 }
